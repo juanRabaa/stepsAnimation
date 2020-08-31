@@ -28,7 +28,6 @@ module.exports = merge(common, {
     contentBase: paths.build,
     open: true,
     compress: true,
-    host: "192.168.1.43",
     hot: true,
     port: 8080,
   },

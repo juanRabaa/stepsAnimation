@@ -22,6 +22,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
+    z-index: 1;
 }
 
 .sticky-step > .scroll-height {
@@ -42,24 +43,22 @@
     height: 200vh;
 }
 
+#text-demo .step-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#text-demo .texts{
+    width: 100%;
+}
+
 #text-demo .texts p{
     display: inline-block;
-}
-
-#text-demo .texts div:nth-child(1) p{
-    font-size: 6rem;
-}
-
-#text-demo .texts div:nth-child(2) p{
-    font-size: 6rem;
-}
-
-#text-demo .texts div:nth-child(3) p{
-    font-size: 6rem;
+    font-size: 4rem;
 }
 
 #text-demo .texts div:nth-child(4) p{
-    font-size: 6rem;
     transform: scale(0);
     width: 100%;
     text-align: center;
@@ -80,4 +79,108 @@
 
 #forth-text-step{
     margin-top: -145vh;
+}
+
+@media (min-width: 768px){
+    #text-demo .texts p{
+        display: inline-block;
+        font-size: 6rem;
+    }
+}
+
+//=============================
+//  CAT ANIMATION
+//=============================
+#images img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#images .step-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#images > .scroll-height {
+    height: 500vh;
+    position: relative;
+    margin-top: -100vh;
+}
+
+//=============================
+//  METEORITES
+//=============================
+
+#meteorites .scroll-height{
+    display: flex;
+    align-items: flex-end;
+}
+
+#meteorites .scroll-height img{
+    width: 100%;
+}
+
+#meteorites .meteorites{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+#meteorites .meteorite{
+    position: absolute;
+    width: 20rem;
+    right: 0;
+    transform: rotate(-9deg);
+}
+
+//=============================
+//  STAR WARS
+//=============================
+
+#starwars .scroll-height{
+    height: 600vh;
+}
+
+#starwars .destroyers {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+    max-width: 50rem;
+    text-align: center;
+}
+
+#starwars .falcon img {
+    width: 32rem;
+    position: absolute;
+    bottom: 4rem;
+    left: calc(40% - 16rem);
+    z-index: 4;
+    max-width: 90%;
+}
+
+#starwars .destroyers img {
+    position: absolute;
+    width: 28rem;
+    top: 25%;
+    left: calc(50% - 14rem);
+    transform: scale(0);
+    z-index: 3;
+}
+
+#starwars .destroyers img:nth-child(2) {
+    left: 0;
+    width: 18rem;
+    top: 29%;
+    z-index: 2;
+}
+
+#starwars .destroyers img:nth-child(3) {
+    right: 0;
+    width: 18rem;
+    left: initial;
+    top: 29%;
+    z-index: 2;
 }
