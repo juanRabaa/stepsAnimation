@@ -11,7 +11,7 @@ When the `scrollY` reaches the `endOffset`, the `travel == 1`
 
 In between the beginning and the end of the animation, the `travel` takes a value proportional to the amount of space traveled. So if the `scrollY` is in the middle of the travelable space, the `travel == 0.5`. Other than lineal **easings** can be applied directly from the callbacks.
 
-![Image field in term edition screen](/img/stepsAnimation.PNG)
+![Image field in term edition screen](/img/stepsAnimation.png)
 
 # How to use
 
