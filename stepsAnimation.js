@@ -70,14 +70,15 @@ export class StepAnimation{
             *   @property {function} endsOnView - If the animation should end as soon as the endOffset comes into view.
             *   If false, the animation ends when the window offset top reaches the endOffset
             */
-            endsOnView: false,
+            endsOnView: true,
             /**
             *   @property {function} onEnter - A function to run when entering the step
-            *   @param {int} fromTop                Indicates if the step is being entered from the top (true) or bottom (false)
+            *   @param {bool} fromTop                Indicates if the step is being entered from the top (true) or bottom (false)
             */
             onEnter: null,
             /**
             *   @property {function} onExit - A function to run when exiting the step
+            *   @param {bool} toTop                  Indicates if the step is being exited from the top (true) or bottom (false)
             */
             onExit: null,
             /**
@@ -237,8 +238,12 @@ export class StepAnimation{
         this.onExit ? this.onExit(this.currentTravel < 0 ? true : false) : false;
     }
 
+    hasOffsetData(){
+        return this.$elem.length != 0 || (this.initOffset != null && this.endOffset != null)
+    }
+
     update(){
-        if(!this.$elem.length)
+        if(!this.hasOffsetData())
             return;
         this.updateParameters();
         this.currentTravel = this.traveled();
@@ -296,7 +301,7 @@ export class StepAnimation{
     }
 
     init(){
-        if(!this.$elem && this.initOffset == null && this.endOffset == null)
+        if(!this.hasOffsetData())
             return false;
 
         const _this = this;
