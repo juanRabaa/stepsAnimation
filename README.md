@@ -1,6 +1,12 @@
 # **stepsAnimation**
 A library to make animations with values proportional to the scroll position of the document or an element
 
+-   [What does it do?](#what-does-it-do)
+-   [How to use it](#how-to-use)
+    -   [Most important options](#most-important-options)
+    -   [Complete Example](#complete-example)
+-   [Options](#options)
+
 # What does it do
 
 It calls user defined callbacks when the scrollY of an element or the window **travels through** an space defined by the `initialOffset` and `endOffset`, which works as the beginning and end of the step animation respectively. This offsets can be set automatically by defining an `$elem` whose top and bottom works as `initialOffset` and `endOffset`.
@@ -9,34 +15,33 @@ When the `scrollY` reaches the `initialOffset`, the `travel == 0`
 
 When the `scrollY` reaches the `endOffset`, the `travel == 1`
 
-In between the beginning and the end of the animation, the `travel` takes a value proportional to the amount of space traveled. So if the `scrollY` is in the middle of the travelable space, the `travel == 0.5`. Other than lineal **easings** can be applied directly from the callbacks.
+In between the beginning and the end of the animation, the `travel` takes a value proportional to the amount of space traveled. So if the `scrollY` is in the middle of the animation space, the `travel == 0.5`. Other than lineal **easings** can be applied directly from the callbacks.
 
-![Image field in term edition screen](/img/stepsAnimation.png)
+![documentation image](/img/stepsAnimation.png)
 
 # How to use
 
-It has many applications.
-
-The best way to use it is by creating an `html elem` that will define the offsets and travelable space of the animation.
+The best way to use it is by creating an `html elem` that will define the animation space.
 
 Once we have that `$elem`, we can do anything with the callbacks passed to `stepAnimation`
 
-- It can be used to detect when the page has reached or exited an `$elem`, and do
-something `onEnter` or `onExit`.
+## Most important options
+- The `callback` option lets us pass a piece of code that runs every time we scroll across the space of the `$elem`. It takes a parameter, `(float) travel`, that indicates how much distance has been traveled, going from 0 (initOffset), to 1 (endOffset).
 
+- We can pass `onEnter` and `onExit` callbacks that runs when we scroll into or out of the space defined by the offsets.
 
-- The body background can be changed from white to black by doing this on `callback`
+- We can set options to make the animation start (`startOnView`) or end (`endsOnView`) as soon as the animation space comes into view. This would actually make the animation space bigger.
 
-    ```js
-    const reverseRGB = 255 - 255 * travel;
-    $('body').css('background-color', `rgb(${reverseRGB},${reverseRGB},${reverseRGB})`)
-    ```
+![Starts On View - How does it works](/img/startsOnView.png)
 
 -----------
+
+## Complete Example
 
 A cool animation can be archived by setting an sticky `<div>` inside the `$elem` and
 animating its content with the stepAnimation `callback`
 
+view.html
 ````html
 <!-- $elem -->
 <section id="testStep" class="step sticky-step">
@@ -54,8 +59,11 @@ animating its content with the stepAnimation `callback`
     <div class="scroll-height">
     </div>
 </section>
+<!-- $elem end -->
 ````
 
+<br></br>
+style.css
 ````css
 /****** GENERAL CSS for any sticky step *********/
 .sticky-step {
@@ -92,7 +100,8 @@ animating its content with the stepAnimation `callback`
     justify-content: center;
 }
 ````
-
+<br></br>
+index.js
 ````js
 const textRotationStep = new StepAnimation({
     $elem: $('#testStep'),
